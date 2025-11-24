@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生ポートフォリオ | [あなたの名前]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            scroll-behavior: smooth;
+        }
+        a {
+            text-decoration: none;
+            color: #1a73e8; /* Google Blue */
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0d47a1;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .nav-list {
+            list-style: none;
+            display: flex;
+        }
+        .nav-list li {
+            margin-left: 30px;
+        }
+        .nav-list a {
+            font-weight: 400;
+            color: #555;
+            padding: 5px 10px;
+            position: relative;
+        }
+        .nav-list a:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: #1a73e8;
+            transition: width 0.3s;
+        }
+        .nav-list a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #e3f2fd; /* Light Blue Background */
+            color: #333;
+            padding: 150px 20px 80px;
+            text-align: center;
+            margin-top: 60px; /* Header Height */
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            box-shadow: 0 4px 6px rgba(26, 115, 232, 0.3);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .cta-button:hover {
+            background-color: #0d47a1;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        .section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #e3f2fd;
+        }
+        
+        /* About Section (Self-Introduction) */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            border-left: 4px solid #1a73e8;
+            padding-left: 10px;
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #555;
+        }
+        /* Highlight for GAKUCHIKA */
+        .gaku-chika {
+            padding: 15px;
+            border: 1px solid #c5e1a5; /* Light Green Border */
+            background-color: #f1f8e9; /* Extra Light Green Background */
+            border-radius: 4px;
+        }
+        .gaku-chika strong {
+            color: #388e3c; /* Dark Green Text */
+        }
+
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .project-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .project-content {
+            padding: 20px;
+        }
+        .project-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .project-content p {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        .project-links a {
+            margin-right: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+            font-size: 0.9rem;
+        }
+        .footer p {
+            margin-bottom: 10px;
+        }
+        .footer a {
+            color: #81d4fa; /* Light Blue */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none; /* Mobile navigation is typically hidden and toggled */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .section {
+                padding: 20px;
+                margin: 40px 15px;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <span class="logo">[あなたの名前] Portfolio</span>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#about">自己紹介</a></li>
+                    <li><a href="#projects">制作実績</a></li>
+                    <li><a href="#contact">連絡先</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>創造性を形にする。</h1>
+        <p>ITとコミュニケーションで未来の課題を解決する、[あなたの学部/専攻]学生。</p>
+        <a href="#projects" class="cta-button">制作実績を見る</a>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title">自己紹介 (About Me)</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>スキルと関心</h3>
+                <p>大学では、Webデザイン、データ分析、情報システム設計を主に学んでいます。特に**ユーザー目線での課題発見と改善プロセス**に強い関心があります。</p>
+                <ul>
+                    <li>**技術スキル:** HTML, CSS, JavaScript (初級), Python (データ処理)</li>
+                    <li>**得意分野:** 情報の整理・可視化、論理的な問題解決、関係者間の調整</li>
+                </ul>
+
+                <h3>学生時代に力を入れたこと (ガクチカ)</h3>
+                <div class="gaku-chika">
+                    <p><strong>高校時代、ICT委員会委員長として、学校行事のWebサイト作成などのIT活動を主導しました。</strong></p>
+                    <p>特に力を入れたのは、全生徒に配布されていた**iPadの利用規制改革**です。当時、標準アプリも使えないほどの過剰な制限があり、生徒の利便性を大きく損なっていました。</p>
+                    <p>私は生徒側の意見を学内アンケートで集約し、その問題点を**具体的なデータと共に教員に提示**。教員側が抱える懸念点をヒアリングし、**双方の意見の共有を図るための対話の場**を設けました。</p>
+                    <p>残念ながら私の任期中の改善は叶いませんでしたが、この活動がきっかけで、翌年以降、規制緩和に向けた前向きな検討が開始されました。</p>
+                    <p>この経験から、一方の立場（利用者と管理者）だけで互いの意見や背景を想像で補完することの限界を痛感しました。環境向上のためには、まず**事実に基づき問題提起し、当事者間で懸念を共有し、地道に相談と実行を重ねること**が不可欠だと学びました。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 class="section-title">制作実績 (Projects)</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <h4>プロジェクト A: 学園祭公式Webサイト</h4>
+                    <p>役割: デザイン・コーディング担当。アクセス集中に耐える軽量化と、生徒が更新しやすいシンプルな構造を意識して作成しました。</p>
+                    <div class="project-links">
+                        <a href="#">詳細を見る &rarr;</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h4>プロジェクト B: [授業名] データ可視化レポート</h4>
+                    <p>Python/Pandasを使用し、[具体的なテーマ]に関するデータを分析。グラフや図を効果的に使用したWebレポートを作成しました。</p>
+                    <div class="project-links">
+                        <a href="#">詳細を見る &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h4>プロジェクト C: 個人ブログ/技術メモサイト</h4>
+                    <p>日々の学習内容や技術的なTipsをMarkdownで記述し、静的サイトジェネレータで公開。継続的な情報発信を実践しています。</p>
+                    <div class="project-links">
+                        <a href="#">サイトを見る &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title">連絡先 (Contact)</h2>
+        <p style="text-align: center; margin-bottom: 30px;">私の制作物や経験について、ご質問やご連絡がありましたら、お気軽にご連絡ください。</p>
+        <div style="text-align: center;">
+            <p>メール: <a href="mailto:your.email@example.com">[your.email@example.com]</a></p>
+            <p>GitHub: <a href="https://github.com/yourusername" target="_blank">/yourusername</a></p>
+            <p>LinkedIn: <a href="#" target="_blank">あなたのLinkedInプロフィール</a></p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 [あなたの名前]. All Rights Reserved.</p>
+        <p>Designed with a focus on simplicity and clarity.</p>
+    </footer>
+
+</body>
+</html>
